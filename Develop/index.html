@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        #container {
+
+            margin: 20px;
+            ;
+        }
+
+        .card {
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="container">
+
+        <div class="row">
+            <div class="col-md-3">
+                <form id="weather">
+                    <label for="city-name">Search City:</label><br>
+                    <input type="text" id="city-name">
+                    <input type="submit" id="search" value="Search">
+                </form>
+
+                <div class="card" id="list-view" style="width: 16rem;">
+                    <ul class="list-group list-group-flush">
+                        <!-- <li class="list-group-item">Cras justo odio</li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="card card1" id="city-Info" style="width: 30rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text1"></p>
+                        <p class="card-text2"></p>
+                        <p class="card-text3"></p>
+                        <p class="card-text4"></p>
+
+                        <!-- <p class="card-text2"></p>
+                        <p class="card-text3"></p> -->
+
+
+                    </div>
+                    <div id="forecast"></div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            var cities = [];
+
+
+            function renderButton() {
+                var cityList = $("#list-view")
+                cityList.empty();
+                for (var i = 0; i < cities.length; i++) {
+                    var list = $("<li>");
+                    list.addClass("list-group-item");
+                    list.attr("data-city", cities[i]);
+                    list.text(cities[i]);
+                    cityList.append(list);
+                }
+            }
+            $("#search").on("click", function (event) {
+                event.preventDefault();
+                var cityName1 = $("#city-name").val().trim();
+                cities.push(cityName1);
+                renderButton();
+                console.log(cityName1);
+                getCityInfo();
+            });
+            var cityName;
+            function getCityInfo() {
+                cityName = $("#city-name").val().trim();
+                displayInfo();
+
+            }
+
+            function displayView() {
+                cityName = $(this).attr("data-city");
+                displayInfo();
+            }
+            function displayInfo() {
+
+
+
+                var APIKey = "166a433c57516f51dfab1f7edaed8413";
+                var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
+                    "q=" + cityName + "&appid=" + APIKey;
+                // //atlanta(date) temperature,humidity,windspeed,uv index
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    $(".card-title").html("<h1>" + response.name + "</h1>");
+                    $(".card-text1").html("<p>  temperature: " + response.main.temp + "</p>");
+                    $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
+                    $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
+
+                    //     // $(".card1").html("<p> Humidity:" + response.main.humidity + "</p>");
+
+                    //     var date = response.dt;
+                    //     console.log(date);
+                    //     var dateTime = moment(date).format('MM/dd/yyyy');
+                    //     console.log(dateTime);
+                    // })
+
+                });
+            }
+
+            $(document).on("click", ".list-group-item", displayView);
+
+
+        </script>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+</body>
+
+</html>
