@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <div id="container">
+    <div class="container">
 
         <div class="row">
             <div class="col-md-3">
@@ -65,7 +65,7 @@
 
             var cities = [];
 
-
+          //creating list of city names using renderButton( method)
             function renderButton() {
                 var cityList = $("#list-view")
                 cityList.empty();
@@ -77,29 +77,29 @@
                     cityList.append(list);
                 }
             }
+
+            // when click on the search button, taking the value in the input field and adding to list by calling renderButton method and displayInfo method
             $("#search").on("click", function (event) {
                 event.preventDefault();
-                var cityName1 = $("#city-name").val().trim();
-                cities.push(cityName1);
+                var cityName = $("#city-name").val().trim();
+                cities.push(cityName);
                 renderButton();
-                console.log(cityName1);
-                getCityInfo();
+                
+                displayInfo(cityName);
             });
-            var cityName;
-            function getCityInfo() {
-                cityName = $("#city-name").val().trim();
-                displayInfo();
+            // var cityName;
+            // function getCityInfo() {
+            //     cityName = $("#city-name").val().trim();
+            //     displayInfo();
 
+            // }
+            //getting the aatribute data-city value and passing to diaplayInfo method 
+            var displayView =function() {
+              cityName = $(this).attr("data-city");
+               displayInfo(cityName);
             }
-
-            function displayView() {
-                cityName = $(this).attr("data-city");
-                displayInfo();
-            }
-            function displayInfo() {
-
-
-
+            //getting the required information form the object and adding to html elements in the card body
+            var displayInfo =function(cityName) {
                 var APIKey = "166a433c57516f51dfab1f7edaed8413";
                 var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
                     "q=" + cityName + "&appid=" + APIKey;
@@ -124,7 +124,7 @@
 
                 });
             }
-
+            //calling display view method when click on the city name has class name .list-group-item
             $(document).on("click", ".list-group-item", displayView);
 
 
