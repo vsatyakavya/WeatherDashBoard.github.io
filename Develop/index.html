@@ -9,10 +9,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <style>
         #container {
-
             margin: 20px;
-
-
         }
 
         .card {
@@ -47,12 +44,9 @@
     </nav>
 
     <div id="container">
-
-
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-md-3">
                 <form role="form">
-
                     <label for="city-name">Search City:</label><br>
                     <input type="text" id="city-name">
                     <input type="submit" id="search" value="Search">
@@ -60,13 +54,13 @@
                 </form>
 
                 <div class="card" id="list-view" style="width: 15rem;">
-                    <ul class="list-group list-group-flush">
+                    <ul class="list-group list-group-flush"></ul>
                     </ul>
                 </div>
             </div>
 
 
-            <div class="col-sm-6">
+            <div class="col-md-9">
                 <div class=row>
                     <div class="col-md-12">
                         <div class="card card1" id="city-Info">
@@ -75,7 +69,8 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <h6 class="card-text5"></h6>
+                                <!-- <div class="card-text5"></div> -->
+
                                 <p class="card-text1"></p>
                                 <p class="card-text2"></p>
                                 <p class="card-text3"></p>
@@ -85,18 +80,32 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <div class="card-body" id="weather-section">
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card text-white bg-primary mb-3" style="max-width: 18rem; float:left">
+                                    <div class="card-body" id="weather-section">
 
-    </div>
-    <!-- Display image example -->
-    <div class="card-body" id="weather-section">
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  
-    <script type="text/javascript"></script>
-    <script src="./logic.js"></script>
-  </body>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Display image example -->
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+        <script type="text/javascript"></script>
+        <script src="./logic.js"></script>
+</body>
 
 </html>

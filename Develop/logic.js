@@ -17,6 +17,7 @@ $(document).ready(function(){
         // when click on the search button, taking the value in the input field and adding to list by calling renderButton method and displayInfo method
         $("#search").on("click", function (event) {
             event.preventDefault();
+            
             var cityName = $("#city-name").val().trim();
             cities.push(cityName);
             renderButton();
@@ -41,13 +42,16 @@ $(document).ready(function(){
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                
+                var icon = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
                 var date = response.dt;
                 var formattedDate =  Unix_timestamp(date);
-                 $(".card-text5").html("<h6>" + formattedDate+ "</h6>");
-
-                $(".card-title").html("<h1>" + response.name + "</h1>");
-                $(".card-text1").html("<p>  temperature: " + response.main.temp + "</p>");
+                var temp=( response.main.temp -273.15)*1.80 + 32
+                var image = $("<img>").attr("src", icon);
+                // $(".card-title").html("<h4>" + response.name +" "+ formattedDate+"</h4>").append(image);
+                $(".card-title").append(response.name).append(" ").append(formattedDate).append(" ").append(image);
+                
+                // $(".card-text5").append(image);
+                $(".card-text1").html("<p>  temperature: " + temp.toFixed(2) + "</p>");
                 $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
                 $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
                 lat = response.coord.lat;
@@ -60,8 +64,9 @@ $(document).ready(function(){
                 method: "GET"
             }).then(function (response) {
                 var uv=response.value;
-                $(".card-text4").html("<p>  UV index: " + uv + "</p>");
-               var text= $(".card-body").children(".card-text4");
+                $(".card-text4").html("<p>  UV index: "+"<span>"+uv+"</span>"  + "</p>");
+            //    var text= $(".card-body").children(".card-text4").children("p").children("span");
+               var text=$("span");
                 
                 if (uv === 5) {
                     text.addClass("grey");
@@ -83,10 +88,12 @@ $(document).ready(function(){
                 url: URL,
                 method: "GET"
             }).then(function (response) {
+                console.log(response);
 
                 for (var i = 0; i < 5; i++) {
-                    var icon = "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
-                    var temp = response.list[i].temp.day;
+                     var icon = "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";
+                    // var temp1 = response.list[i].temp.day;
+                    var temp=( response.list[i].temp.day - 273.15)*1.80 + 32 ;
                     var humidity = response.list[i].humidity;
                     var date = response.list[i].dt;
                     var formattedDate=  Unix_timestamp(date);
@@ -95,20 +102,10 @@ $(document).ready(function(){
                     var $weatherList = $("<ul>");
                     $weatherList.addClass("list-group");
                     $("#weather-section").append($weatherList);
-                    var $weatherListItem = $("<li class= 'list-group-item temperature'>");
+                    var $weatherListItem = $("<li class= 'card-text temperature'>");
                     if (date) {
                         $weatherListItem.append("<p class='label label-primary'>" +
                             formattedDate + "</p>");
-
-                    }
-                    if (temp) {
-                        $weatherListItem.append("<span class='label label-primary'>" +
-                            temp + "</span>");
-                    }
-
-                    if (humidity) {
-                        $weatherListItem.append("<p class='label label-primary'>" +
-                            humidity + "</p>");
 
                     }
                     if (icon) {
@@ -116,6 +113,19 @@ $(document).ready(function(){
                         $weatherListItem.append(weathericon);
 
                     }
+                    if (temp) {
+                        $weatherListItem.append("<p class='label label-primary'>" +"Temp:"+
+                            temp.toFixed(2) + "</p>");
+                    }
+
+                    if (humidity) {
+                        $weatherListItem.append("<p class='label label-primary'>" +"humidity"+
+                            humidity + "</p>");
+
+                    }
+                   
+                
+
                     $weatherList.append($weatherListItem);
                 }
              
