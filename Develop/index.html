@@ -87,9 +87,8 @@
 
     </div>
 
-
-
-
+    <div class="card-body" id="weather-section">
+    </div> 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -140,18 +139,45 @@
                 $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
                 $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
 
-                var URL="https://api.openweathermap.org/data/2.5/forecast/daily?q=austin&cnt=5&appid=166a433c57516f51dfab1f7edaed8413";
-               
+                var URL="https://api.openweathermap.org/data/2.5/forecast/daily?q="+cityName+"&cnt=5&appid=166a433c57516f51dfab1f7edaed8413";
+                console.log(URL);
+               $("#weather-section").empty();
                 $.ajax({
                     url:URL,
                     method:"GET"
                 }).then(function(response) {
-                    for (var i=0;i<5;i++) {
+                    for (var i=0; i<5; i++) {
                 var icon ="https://openweathermap.org/img/w/" +response.list[i].weather[0].icon+".png";
                 var temp=response.list[i].temp.day;
                 var humidity=response.list[i].humidity;
-           
+                var date=response.list[i].dt;
 
+                var $weatherList = $("<ul>");
+                $weatherList.addClass("list-group");
+                $("#weather-section").append($weatherList);
+                var $weatherListItem = $("<li class= 'list-group-item temperature'>");
+                    if (date) {
+                    $weatherListItem.append("<p class='label label-primary'>"+
+                    date+"</p>");
+ 
+                  }
+                 if (temp) {
+                     console.log(temp);
+                    $weatherListItem.append("<span class='label label-primary'>"+
+                    temp+"</span>");
+                 }
+
+                  if (humidity) {
+                    $weatherListItem.append("<p class='label label-primary'>"+
+                    humidity+"</p>");
+ 
+                  }
+                  if (icon) {
+                    var weathericon=$("<img>").attr("src",icon);
+                    $weatherListItem.append(weathericon);
+
+                  }
+                    $weatherList.append($weatherListItem);
                     }
                    
                     
