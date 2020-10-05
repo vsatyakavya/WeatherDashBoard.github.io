@@ -41,14 +41,18 @@ $(document).ready(function(){
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
+                
+                var date = response.dt;
+                var formattedDate =  Unix_timestamp(date);
+                 $(".card-text5").html("<h6>" + formattedDate+ "</h6>");
+
                 $(".card-title").html("<h1>" + response.name + "</h1>");
                 $(".card-text1").html("<p>  temperature: " + response.main.temp + "</p>");
                 $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
                 $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
                 lat = response.coord.lat;
-                     lon = response.coord.lon;
-                     console.log("lat is"+lat);
-                     console.log("lon is"+lon);
+                 lon = response.coord.lon;
+                    
 
                      var queryUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=166a433c57516f51dfab1f7edaed8413";
             $.ajax({
@@ -68,8 +72,6 @@ $(document).ready(function(){
                 else if (uv < 5) {
                     text.addClass("green");
                 }
-                console.log("uv is:......."+uv);
-
             });
             });
             
@@ -87,6 +89,8 @@ $(document).ready(function(){
                     var temp = response.list[i].temp.day;
                     var humidity = response.list[i].humidity;
                     var date = response.list[i].dt;
+                    var formattedDate=  Unix_timestamp(date);
+
                 
                     var $weatherList = $("<ul>");
                     $weatherList.addClass("list-group");
@@ -94,7 +98,7 @@ $(document).ready(function(){
                     var $weatherListItem = $("<li class= 'list-group-item temperature'>");
                     if (date) {
                         $weatherListItem.append("<p class='label label-primary'>" +
-                            date + "</p>");
+                            formattedDate + "</p>");
 
                     }
                     if (temp) {
@@ -125,4 +129,16 @@ $(document).ready(function(){
         }
         //calling display view method when click on the city name has class name .list-group-item
         $(document).on("click", ".list-group-item", displayView);
+
+        function Unix_timestamp(t)
+        {
+        var dt = new Date(t * 1000);
+        var date = dt.getDate();
+        var month =  (dt.getMonth() + 1);
+        var year =  dt.getFullYear();
+        return month+ '/' + date+ '/' + year;  
+        }
+        
+        
+
     });
