@@ -55,7 +55,7 @@ $(document).ready(function(){
                 var image = $("<img>").attr("src", icon);
                 $(".card-title").html(response.name+" ("+ formattedDate+")").append(image);
 
-                $(".card-text1").text("Temperature: "+temp.toFixed(2)+"F")
+                $(".card-text1").text("Temperature: "+temp.toFixed(2)+"°F")
                 $(".card-text2").text("Humidity: "+response.main.humidity+"%");
                 $(".card-text3").text("Wind Speed: "+response.wind.speed+"MPH");
                 lat = response.coord.lat;
@@ -126,7 +126,7 @@ $(document).ready(function(){
                     }
                     if (temp) {
                         $weatherListItem.append("<p class='label label-primary'>" +"Temp: "+
-                            temp.toFixed(2) +"F"+ "</p>");
+                            temp.toFixed(2) +"°F"+ "</p>");
                     }
 
                     if (humidity) {
