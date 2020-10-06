@@ -53,16 +53,11 @@ $(document).ready(function(){
                 var formattedDate =  Unix_timestamp(date);
                 var temp=( response.main.temp -273.15)*1.80 + 32
                 var image = $("<img>").attr("src", icon);
-                $(".card-title").html(response.name +" "+ formattedDate).append(image);
-                // $(".card-title").text(response.name).append(" ").append(formattedDate).append(" ").append(image);
-                
-                // $(".card-text5").append(image);
-                // $(".card-text1").html("<p>  temperature: " + temp.toFixed(2) + "</p>");
-                // $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
-                // $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
-                $(".card-text1").text("temperature: "+temp.toFixed(2))
-                $(".card-text2").text("humidity: "+response.main.humidity);
-                $(".card-text3").text("wind speed: "+response.wind.speed);
+                $(".card-title").html(response.name+" ("+ formattedDate+")").append(image);
+
+                $(".card-text1").text("Temperature: "+temp.toFixed(2)+"F")
+                $(".card-text2").text("Humidity: "+response.main.humidity+"%");
+                $(".card-text3").text("Wind Speed: "+response.wind.speed+"MPH");
                 lat = response.coord.lat;
                  lon = response.coord.lon;
                     
@@ -73,18 +68,23 @@ $(document).ready(function(){
                 method: "GET"
             }).then(function (response) {
                 var uv=response.value;
-                $(".card-text4").html("<p>  UV index: "+"<span>"+uv+"</span>"  + "</p>");
+                $(".card-text4").html("<p>  UV Index: "+"<span>"+uv+"</span>"  + "</p>");
             //    var text= $(".card-body").children(".card-text4").children("p").children("span");
                var text=$("span");
                 
                 if (uv === 5) {
                     text.addClass("grey");
+                    text.addClass("padding")
                 }
                 else if (uv > 5) {
                     text.addClass("red");
+                    text.addClass("padding")
+
                 }
                 else if (uv < 5) {
                     text.addClass("green");
+                    text.addClass("padding")
+
                 }
             });
             });
@@ -125,13 +125,13 @@ $(document).ready(function(){
 
                     }
                     if (temp) {
-                        $weatherListItem.append("<p class='label label-primary'>" +"Temp:"+
-                            temp.toFixed(2) + "</p>");
+                        $weatherListItem.append("<p class='label label-primary'>" +"Temp: "+
+                            temp.toFixed(2) +"F"+ "</p>");
                     }
 
                     if (humidity) {
-                        $weatherListItem.append("<p class='label label-primary'>" +"humidity"+
-                            humidity + "</p>");
+                        $weatherListItem.append("<p class='label label-primary'>" +"Humidity: "+
+                            humidity +"%"+ "</p>");
 
                     }
                    
