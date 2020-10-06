@@ -8,40 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <style>
-        #container {
-            margin: 20px;
-        }
-
-        .card {
-            margin-top: 20px;
-        }
-
-        #navbar1 {
-            text-align: center;
-            display: block;
-            color: white;
-            padding: 10px;
-        }
-
-        .red {
-            background-color: red;
-        }
-
-        .green {
-            background-color: green;
-        }
-
-        .grey {
-            background-color: grey;
-        }
-       .padding{
-           padding: 5px;
-           border-radius: 5px;;
-       }
-       
-
-    </style>
+       <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -54,11 +21,7 @@
         <div class="row">
             <div class="col-md-3">
                 <form role="form">
-                    <label for="city-name">Search City:</label><br>
-                    <!-- <input type="text" id="city-name">
-                    <input type="submit" id="search" value="Search"> -->
-                    
-
+                    <label for="city-name">Search for a City:</label><br>
                     <div class="input-group" style="width: 80%;">
                         <input type="text"  class="form-control" id = "city-name" placeholder="Enter City Name" >
                         <div class="input-group-append">
@@ -81,14 +44,9 @@
                 <div class=row>
                     <div class="col-md-12">
                         <div class="card card1" id="city-Info">
-                            <!-- <div class="card-header">
-                                <h4>Weather Info</h4>
-                            </div> -->
                             <div class="card-body">
                                 <h5 class="card-title"></h5>
-                                <!-- <div class="card-text5"></div> -->
-
-                                <p class="card-text1"></p>
+                                 <p class="card-text1"></p>
                                 <p class="card-text2"></p>
                                 <p class="card-text3"></p>
                                 <p class="card-text4"></p>
@@ -97,23 +55,15 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row"> -->
-
-                <!-- <div class="card-body" id="weather-section">
-                        </div> -->
+                <div class="heading"><h4>5-Day Forecast:</h4></div>
                 <div class="row" id="weather-section">
-                    <!-- <div class="col-md-3"> -->
-
-
-                </div>
-
-
-                <!-- </div> -->
-            </div>
+                   
+                 </div>
+ </div>
         </div>
 
     </div>
-    <!-- Display image example -->
+    
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

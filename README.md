@@ -3,28 +3,29 @@
 * Weather DashBoard
 
 # Technologies used:
-* HTML, CSS, JavaScript
+* HTML, CSS, JavaScript, JQuery
 
 # Features:
+  When search for a city presented with:
+ * City Name , Date
+ * city current temperature,
+ * humidity,
+ * uv index, 
+ * climate indication icon
+ * 5 Days Forecast
+ * Add to search History
+ * Colors added to UV Index indicates climate condition (favorable , moderate , severe)
+ * Saves last searched city forecast
 
-* Shows question when click on start button
-* Timer
-* After answer question presents with another question
-* Incorrect answer reduces the timer value by 10 seconds
-* when Timer reaches 0 or all questions are answered game ends
-* Display user score
-* Can save user details
-* Can see High SCore
-* Replay option
 
 
 # Challenges:
-* Giving Variable names
-* Showing results
+* Getting climate condition using different API's
+* Fetching icons and UV index colors
 
 
 # Sample web page
-![picture](quiz.png)
+![picture](Assets/weather.png)
 
 # Github Page 
  https://vsatyakavya.github.io/QuizGame.github.io/.
