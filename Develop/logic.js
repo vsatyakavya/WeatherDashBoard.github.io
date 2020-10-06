@@ -1,5 +1,6 @@
 $(document).ready(function(){
         var cities = [];
+      
 
         //creating list of city names using renderButton( method)
         function renderButton() {
@@ -19,10 +20,15 @@ $(document).ready(function(){
             event.preventDefault();
             
             var cityName = $("#city-name").val().trim();
+            if(!cityName){
+                return;
+            }
             cities.push(cityName);
+            localStorage.setItem("cities",JSON.stringify(cities));
             renderButton();
 
             displayInfo(cityName);
+            $(".card1").css("visibility","visible");
         });
 
         //getting the aatribute data-city value and passing to diaplayInfo method 
@@ -47,13 +53,16 @@ $(document).ready(function(){
                 var formattedDate =  Unix_timestamp(date);
                 var temp=( response.main.temp -273.15)*1.80 + 32
                 var image = $("<img>").attr("src", icon);
-                // $(".card-title").html("<h4>" + response.name +" "+ formattedDate+"</h4>").append(image);
-                $(".card-title").append(response.name).append(" ").append(formattedDate).append(" ").append(image);
+                $(".card-title").html(response.name +" "+ formattedDate).append(image);
+                // $(".card-title").text(response.name).append(" ").append(formattedDate).append(" ").append(image);
                 
                 // $(".card-text5").append(image);
-                $(".card-text1").html("<p>  temperature: " + temp.toFixed(2) + "</p>");
-                $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
-                $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
+                // $(".card-text1").html("<p>  temperature: " + temp.toFixed(2) + "</p>");
+                // $(".card-text2").html("<p>  Humidity: " + response.main.humidity + "</p>");
+                // $(".card-text3").html("<p>  Wind Speed: " + response.wind.speed + "</p>");
+                $(".card-text1").text("temperature: "+temp.toFixed(2))
+                $(".card-text2").text("humidity: "+response.main.humidity);
+                $(".card-text3").text("wind speed: "+response.wind.speed);
                 lat = response.coord.lat;
                  lon = response.coord.lon;
                     
@@ -97,11 +106,14 @@ $(document).ready(function(){
                     var humidity = response.list[i].humidity;
                     var date = response.list[i].dt;
                     var formattedDate=  Unix_timestamp(date);
-
+                    var card=$("<div class='card text-white bg-primary mb-3 mr-3 col-md-2' style='max-width: 18rem;'></div>");
                 
+                    var cardBody= $(" <div class='card-body' ></div>");
+                     card.append(cardBody);
                     var $weatherList = $("<ul>");
+                    cardBody.append($weatherList);
                     $weatherList.addClass("list-group");
-                    $("#weather-section").append($weatherList);
+                    $("#weather-section").append(card);
                     var $weatherListItem = $("<li class= 'card-text temperature'>");
                     if (date) {
                         $weatherListItem.append("<p class='label label-primary'>" +
@@ -149,6 +161,15 @@ $(document).ready(function(){
         return month+ '/' + date+ '/' + year;  
         }
         
-        
+
+        var data=localStorage.getItem("cities");
+        if(data){
+            cities=JSON.parse(data);
+            displayInfo(cities[cities.length-1]);
+            renderButton();
+        }
+
+
+       
 
     });
