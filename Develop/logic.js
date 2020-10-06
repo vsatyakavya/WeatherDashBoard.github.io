@@ -97,7 +97,6 @@ $(document).ready(function(){
                 url: URL,
                 method: "GET"
             }).then(function (response) {
-                console.log(response);
 
                 for (var i = 0; i < 5; i++) {
                      var icon = "https://openweathermap.org/img/w/" + response.list[i].weather[0].icon + ".png";

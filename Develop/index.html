@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <style>
         #container {
             margin: 20px;
@@ -34,9 +35,7 @@
         .grey {
             background-color: grey;
         }
-        /* .card1{
-          visibility: hidden; 
-        } */
+
 
     </style>
 
@@ -52,8 +51,18 @@
             <div class="col-md-3">
                 <form role="form">
                     <label for="city-name">Search City:</label><br>
-                    <input type="text" id="city-name">
-                    <input type="submit" id="search" value="Search">
+                    <!-- <input type="text" id="city-name">
+                    <input type="submit" id="search" value="Search"> -->
+                    
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" id = "city-name" placeholder="Enter City Name">
+                        <div class="input-group-append">
+                          <button class="btn btn-primary" id="search" type="submit">
+                            <i class="fa fa-search"></i>
+                             </button>
+                        </div>
+                      </div>
 
                 </form>
 
