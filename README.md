@@ -33,6 +33,6 @@
 
 
 # Github Repository
-https://github.com/vsatyakavya/QuizGame.github.io
+https://vsatyakavya.github.io/WeatherDashBoard.github.io/Develop/
 
 @copyright 2020
