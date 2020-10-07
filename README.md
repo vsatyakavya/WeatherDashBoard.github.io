@@ -33,6 +33,6 @@
 
 
 # Github Repository
-https://vsatyakavya.github.io/WeatherDashBoard.github.io/Develop/
+https://github.com/vsatyakavya/WeatherDashBoard.github.io
 
 @copyright 2020
