@@ -28,7 +28,7 @@
 ![picture](Assets/weather.png)
 
 # Github Page 
- https://vsatyakavya.github.io/WeatherDashBoard.github.io/.
+  https://vsatyakavya.github.io/WeatherDashBoard.github.io/
 
 
 
