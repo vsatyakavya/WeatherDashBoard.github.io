@@ -63,7 +63,7 @@ $(document).ready(function(){
                  lon = response.coord.lon;
                     
     //getting uv index by sending latitude and longitude values to uvi url
-         var queryUrl = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=166a433c57516f51dfab1f7edaed8413";
+         var queryUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + "&appid=166a433c57516f51dfab1f7edaed8413";
             $.ajax({
                 url: queryUrl,
                 method: "GET"
@@ -105,6 +105,7 @@ $(document).ready(function(){
                 
                     var temp=( response.list[i].temp.day - 273.15)*1.80 + 32 ;
                     var humidity = response.list[i].humidity;
+                    
                     var date = response.list[i].dt;
                     var formattedDate=  Unix_timestamp(date);
                     var card=$("<div class='card text-white bg-primary mb-3 mr-3 col-md-2' style='max-width: 18rem;'></div>");
