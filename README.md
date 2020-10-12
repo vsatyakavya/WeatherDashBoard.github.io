@@ -35,4 +35,7 @@
 # Github Repository
 https://github.com/vsatyakavya/WeatherDashBoard.github.io
 
+# Contact
+satyakavya24@gmail.com 
+
 @copyright 2020
