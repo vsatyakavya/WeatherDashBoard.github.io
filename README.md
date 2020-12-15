@@ -1,6 +1,7 @@
+# Weather Dashboard
 
 # Application Does:
-* Weather DashBoard
+* This applcation shows the weather details of the city and gives 5 days weather forecast.
 
 # Technologies used:
 * HTML, CSS, JavaScript, JQuery
